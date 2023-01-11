@@ -11,7 +11,7 @@ import Breadcrumbs from "../../components/Common/Breadcrumb";
 //i18n
 import { withTranslation } from "react-i18next";
 import { colRef, db, Timestamp } from "helpers/firebase_helper";
-import {post} from 'helpers/api_helper';
+import { post } from "helpers/api_helper";
 
 function TransactionTable(arg) {
   const { data } = arg;
@@ -20,38 +20,53 @@ function TransactionTable(arg) {
 
   const activateTrx = (type, id) => {
     switch (type) {
-      case "withdraw": post("api/balance/withdraw/activate", {id}).then(res => console.log(res));
+      case "withdraw":
+        post("api/balance/withdraw/activate", { id }).then(res =>
+          console.log(res)
+        );
         break;
-      case "topup": post("api/balance/topup/activate", {id}).then(res => console.log(res));
-      default: 
+      case "topup":
+        post("api/balance/topup/activate", { id }).then(res =>
+          console.log(res)
+        );
+      default:
         break;
     }
-    
-  }
+  };
 
   const deactivateTrx = (type, id) => {
     switch (type) {
-      case "withdraw": post("api/balance/withdraw/deactivate", {id}).then(res => console.log(res));   
-        break; 
-      case "topup": post("api/balance/topup/deactivate", {id}).then(res => console.log(res));
-        break; 
-      default: 
+      case "withdraw":
+        post("api/balance/withdraw/deactivate", { id }).then(res =>
+          console.log(res)
+        );
         break;
-    }
-    
-  }
-
-  const deleteTrx = (type, id, userid) => {
-    switch (type) {
-      case "withdraw": post("api/balance/withdraw/delete", {id, userid}).then(res => console.log(res));
-        break;
-      case "topup": post("api/balance/topup/delete", {id, userid}).then(res => console.log(res));
+      case "topup":
+        post("api/balance/topup/deactivate", { id }).then(res =>
+          console.log(res)
+        );
         break;
       default:
         break;
     }
-    
-  }
+  };
+
+  const deleteTrx = (type, id, userid) => {
+    switch (type) {
+      case "withdraw":
+        post("api/balance/withdraw/delete", { id, userid }).then(res =>
+          console.log(res)
+        );
+        break;
+      case "topup":
+        post("api/balance/topup/delete", { id, userid }).then(res =>
+          console.log(res)
+        );
+        break;
+      default:
+        break;
+    }
+  };
 
   const transactionColumns = useMemo(
     () => [
@@ -82,7 +97,9 @@ function TransactionTable(arg) {
         Cell: cellProps => {
           return (
             <>
-              <Row className="mx-1">{Capitalize(cellProps.row.original.type)}</Row>
+              <Row className="mx-1">
+                {Capitalize(cellProps.row.original.type)}
+              </Row>
             </>
           );
         },
@@ -93,7 +110,9 @@ function TransactionTable(arg) {
         Cell: cellProps => {
           return (
             <>
-              <Row className="mx-1">{Capitalize(cellProps.row.original.data.customerData.name)}</Row>
+              <Row className="mx-1">
+                {Capitalize(cellProps.row.original.id)}
+              </Row>
             </>
           );
         },
@@ -118,21 +137,36 @@ function TransactionTable(arg) {
         Cell: cellProps => {
           let method = "";
           switch (cellProps.row.original.type) {
-            case "token": method = "saldo"
+            case "token":
+              method = "saldo";
               break;
-              case "referral": method = "saldo"
+            case "referral":
+              method = "saldo";
               break;
-              case "plan-a": method = "saldo"
+            case "plan-a":
+              method = "saldo";
               break;
-          
-            default: method = cellProps.row.original.data.transactionData.method;
+            case "plan-b":
+              method = "saldo";
+              break;
+            case "prepaid":
+              method = "saldo";
+              break;
+            case "postpaid":
+              method = "saldo";
+              break;
+            case "transfer-in":
+              method = "saldo";
+              break;
+            case "transfer-out":
+              method = "saldo";
+              break;
+
+            default:
+              method = cellProps.row.original.data.transactionData.method;
               break;
           }
-          return (
-            <>
-              {Capitalize(method)}
-            </>
-          );
+          return <>{Capitalize(method)}</>;
         },
       },
       {
@@ -167,27 +201,43 @@ function TransactionTable(arg) {
         Cell: cellProps => {
           return (
             <div className="d-flex gap-3">
-              
-              {cellProps.row.original.status == "PENDING"? 
-              <Link 
-              to="#" 
-              className="text-success"
-              onClick={()=> activateTrx(cellProps.row.original.type, cellProps.row.original.trxid)}
-              >
-                <i className="mdi mdi-check font-size-18" id="activate" />
-                {
-                  <UncontrolledTooltip placement="top" target="activate">
-                    Aktifkan
-                  </UncontrolledTooltip>
-                }
-              </Link>:<Link to="#" className="text-secondary" onClick={()=> deactivateTrx(cellProps.row.original.type, cellProps.row.original.trxid)}>
-                <i className="mdi mdi-close font-size-18" id="deactivate" />
-                {
-                  <UncontrolledTooltip placement="top" target="deactivate">
-                    Nonaktifkan
-                  </UncontrolledTooltip>
-                }
-              </Link>}
+              {cellProps.row.original.status == "PENDING" ? (
+                <Link
+                  to="#"
+                  className="text-success"
+                  onClick={() =>
+                    activateTrx(
+                      cellProps.row.original.type,
+                      cellProps.row.original.trxid
+                    )
+                  }
+                >
+                  <i className="mdi mdi-check font-size-18" id="activate" />
+                  {
+                    <UncontrolledTooltip placement="top" target="activate">
+                      Aktifkan
+                    </UncontrolledTooltip>
+                  }
+                </Link>
+              ) : (
+                <Link
+                  to="#"
+                  className="text-secondary"
+                  onClick={() =>
+                    deactivateTrx(
+                      cellProps.row.original.type,
+                      cellProps.row.original.trxid
+                    )
+                  }
+                >
+                  <i className="mdi mdi-close font-size-18" id="deactivate" />
+                  {
+                    <UncontrolledTooltip placement="top" target="deactivate">
+                      Nonaktifkan
+                    </UncontrolledTooltip>
+                  }
+                </Link>
+              )}
               <Link to="#" className="text-primary">
                 <i
                   className="mdi mdi-information font-size-18"
@@ -197,11 +247,17 @@ function TransactionTable(arg) {
                   Informasi
                 </UncontrolledTooltip>
               </Link>
-              
+
               <Link
                 to="#"
                 className="text-danger"
-                onClick={()=> deleteTrx(cellProps.row.original.type, cellProps.row.original.trxid, cellProps.row.original.id)}
+                onClick={() =>
+                  deleteTrx(
+                    cellProps.row.original.type,
+                    cellProps.row.original.trxid,
+                    cellProps.row.original.id
+                  )
+                }
               >
                 <i className="mdi mdi-delete font-size-18" id="deletetooltip" />
                 <UncontrolledTooltip placement="top" target="deletetooltip">
@@ -215,8 +271,6 @@ function TransactionTable(arg) {
     ],
     []
   );
-
-  
 
   return (
     <TableContainer

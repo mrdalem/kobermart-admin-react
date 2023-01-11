@@ -5,8 +5,8 @@ import {auth, idToken} from "./firebase_helper";
 let token = idToken();
 
 //apply base url for axios
-// const API_URL = "https://us-central1-kobermart2022.cloudfunctions.net/server/";
-const API_URL = "http://127.0.0.1:3000/";
+const API_URL = "https://us-central1-kobermart2022.cloudfunctions.net/server/";
+// const API_URL = "http://127.0.0.1:4000/";
 
 const axiosApi = axios.create({
   baseURL: API_URL,

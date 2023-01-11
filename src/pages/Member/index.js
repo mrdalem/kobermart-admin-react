@@ -402,7 +402,7 @@ class Token extends Component {
       selectedVillage: "",
       name: "",
       whatsapp: "",
-      gender: "L",
+      gender: "male",
       email: "",
       password: "",
       passwordConf: "",
@@ -503,7 +503,7 @@ class Token extends Component {
       selectedVillage: "",
       name: "",
       whatsapp: "",
-      gender: "L",
+      gender: "male",
       email: "",
       password: "",
       passwordConf: "",
@@ -523,7 +523,7 @@ class Token extends Component {
     this.setState({
       name: "Testing",
       whatsapp: "085313924122",
-      gender: "L",
+      gender: "male",
       email: "test@gmail.com",
       password: "123456",
       passwordConf: "123456",
@@ -724,7 +724,7 @@ class Token extends Component {
                   onSubmit={async values => {
                     console.log(values);
                     post("api/member/member/admin-register", {
-                      id: this.state.selectedToken,
+                      token: this.state.selectedToken,
                       ...values,
                     }).then(res => {
                       console.log(res);
@@ -856,8 +856,8 @@ class Token extends Component {
                                   }
                                 >
                                   <option></option>
-                                  <option value="L">Laki-laki</option>
-                                  <option value="P">Perempuan</option>
+                                  <option value="male">Laki-laki</option>
+                                  <option value="female">Perempuan</option>
                                 </Field>
                                 {errors.gender && touched.gender ? (
                                   <div className="text-danger">
