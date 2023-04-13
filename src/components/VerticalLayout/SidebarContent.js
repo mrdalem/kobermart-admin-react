@@ -170,26 +170,66 @@ class SidebarContent extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/produk-prepaid-ppob">
-                      {this.props.t("Produk Prepaid")}
+                    <Link to="/prepaid-data">
+                      {this.props.t("Paket Data")}
                     </Link>
                   </li>
                   <li>
+                    <Link to="/prepaid-pulsa">
+                      {this.props.t("Pulsa")}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/prepaid-pln">
+                      {this.props.t("Token Listrik")}
+                    </Link>
+                  </li>
+                  
+                  <li>
+                    <Link to="/postpaid-pln">
+                      {this.props.t("Tagihan Listrik")}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/produk-prepaid-ppob">
+                      {this.props.t("Semua Produk")}
+                    </Link>
+                  </li>
+                  {/* <li>
                     <Link to="/produk-postpaid-ppob">
                       {this.props.t("Produk Postpaid")}
                     </Link>
-                  </li>
+                  </li> */}
                 </ul>
               </li>
 
               <li>
-                <Link to="/shop" className="has-arrow">
+                <Link to="/shop-order" className="">
                   <i className="bx bxs-store" />
-                  <span>{this.props.t("Belanja")}</span>
+                  <span>{this.props.t("Order")}</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/stok" className="">
+                  <i className="bx bx-package" />
+                  <span>{this.props.t("Stok")}</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/kolektor" className="">
+                  <i className="bx bxl-telegram" />
+                  <span>{this.props.t("Kolektor")}</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/settings" className="has-arrow">
+                  <i className="bx bx-cog" />
+                  <span>{this.props.t("Pengaturan")}</span>
                 </Link>
                 <ul className="sub-menu" aria-expanded="true">
                   <li>
-                    <Link to="/shop-order">{this.props.t("Order")}</Link>
+                    <Link to="/setting">{this.props.t("Umum")}</Link>
                   </li>
                   <li>
                     <Link to="/shop-product">{this.props.t("Produk")}</Link>
@@ -204,13 +244,6 @@ class SidebarContent extends Component {
                     <Link to="/shop-warehouse">{this.props.t("Gudang")}</Link>
                   </li>
                 </ul>
-              </li>
-
-              <li>
-                <Link to="/setting" className="">
-                  <i className="bx bx-cog" />
-                  <span>{this.props.t("Pengaturan")}</span>
-                </Link>
               </li>
             </ul>
           </div>

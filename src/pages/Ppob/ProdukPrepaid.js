@@ -30,7 +30,6 @@ import { prepaidCheckBalance, prepaidPricelist } from "helpers/iak_helper";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { colRef } from "helpers/firebase_helper";
-import { preventDefault } from "@fullcalendar/core";
 
 function PrepaidDataTable(pricelist) {
   const columns = useMemo(
